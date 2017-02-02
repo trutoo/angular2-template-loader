@@ -1,4 +1,4 @@
-# angular2-template-loader
+# angular2-template-loader modified for node_modules
 Chain-to loader for webpack that inlines all html and style's in angular2 components.
 
 [![Build Status](https://travis-ci.org/TheLarkInn/angular2-template-loader.svg?branch=master)](https://travis-ci.org/TheLarkInn/angular2-template-loader)

@@ -3,8 +3,8 @@ var loader = require("../index.js");
 
 var fixtures = require("./fixtures");
 
-describe("loader", function() {
-  it("Should convert html and style file strings to require()s", function(){
+describe("loader", function () {
+  it("Should convert html and style file strings to require()s", function () {
 
     loader.call({}, fixtures.simpleAngular2TestComponentFileStringSimple)
       .should
@@ -23,7 +23,7 @@ describe("loader", function() {
 
   });
 
-  it("Should convert html and style file strings to require()s regardless of inner quotes", function(){
+  it("Should convert html and style file strings to require()s regardless of inner quotes", function () {
 
     loader.call({}, fixtures.componentWithQuoteInUrls)
       .should
@@ -42,7 +42,7 @@ describe("loader", function() {
 
   });
 
-  it("Should convert html and multiple style file strings to require()s", function(){
+  it("Should convert html and multiple style file strings to require()s", function () {
 
     loader.call({}, fixtures.componentWithMultipleStyles)
       .should
@@ -64,21 +64,21 @@ describe("loader", function() {
 
   });
 
-  it("Should return original source if there are no matches", function() {
+  it("Should return original source if there are no matches", function () {
     loader.call({}, 'foo')
       .should
       .be
       .eql('foo');
   });
 
-  it("Should convert partial string match requires", function() {
+  it("Should convert partial string match requires", function () {
     loader.call({}, `{templateUrl: './index/app.html'}`)
       .should
       .be
       .eql(`{template: require('./index/app.html')}`);
   });
 
-  it("Should handle the absense of proper relative path notation", function() {
+  it("Should handle the absense of proper relative path notation", function () {
     loader.call({}, fixtures.componentWithoutRelPeriodSlash)
       .should
       .be
@@ -88,14 +88,14 @@ describe("loader", function() {
   @Component({
     selector: 'test-component',
     template: require('./file.html'),
-    styles: [require('./styles.css')]
+    styles: [require('styles.css')]
   })
   export class TestComponent {}
 `
       );
   });
 
-  it("Should convert html and style file strings to require()s regardless of spacing", function(){
+  it("Should convert html and style file strings to require()s regardless of spacing", function () {
 
     loader.call({}, fixtures.componentWithSpacing)
       .should
@@ -116,7 +116,7 @@ describe("loader", function() {
 
   it("Should keep templateUrl when asked for", function () {
 
-    loader.call({query: '?keepUrl=true'}, fixtures.componentWithSpacing)
+    loader.call({ query: '?keepUrl=true' }, fixtures.componentWithSpacing)
       .should
       .be
       .eql(`
@@ -144,9 +144,9 @@ describe("loader", function() {
     };
 
     loader.call(self, fixtures.componentWithSpacing)
-        .should
-        .be
-        .eql(`
+      .should
+      .be
+      .eql(`
   import {Component} from '@angular/core';
 
   @Component({
@@ -156,11 +156,11 @@ describe("loader", function() {
   })
   export class TestComponent {}
 `
-        );
+      );
 
   });
 
-  it("Should convert html and style file strings to require()s in a single line component decorator", function() {
+  it("Should convert html and style file strings to require()s in a single line component decorator", function () {
 
     loader.call({}, fixtures.componentWithSingleLineDecorator)
       .should
